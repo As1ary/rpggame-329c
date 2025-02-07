@@ -1190,6 +1190,8 @@ GameObject:
   - component: {fileID: 9547916}
   - component: {fileID: -7802736842117305099}
   - component: {fileID: 6544049564737435063}
+  - component: {fileID: 1121792023895808143}
+  - component: {fileID: 9010397378870986454}
   m_Layer: 0
   m_Name: Hero_Knight_Female 1
   m_TagString: Untagged
@@ -1239,7 +1241,7 @@ Animator:
   m_GameObject: {fileID: 131680}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72fa4e31e39dfbe43b053c429d383f08, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1296,6 +1298,32 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1121792023895808143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fb703c640d38144b9bf1235445bd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anim: {fileID: 0}
+  state: 0
+--- !u!114 &9010397378870986454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326d9202d99b162408af7e908c12c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &133228
 GameObject:
   m_ObjectHideFlags: 0
