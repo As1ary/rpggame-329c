@@ -10,16 +10,16 @@ public class CharAnimation : MonoBehaviour
 
     private void ChooseAnimation(Character c)
     {
-        c.Anim.SetBool("IsIdle", false);
-        c.Anim.SetBool("Iswalk", false);
+        c.Anim.SetBool("IsIdel", false);
+        c.Anim.SetBool("IsMove", false);
 
         switch (c.State)
         {
             case CharState.Idle:
-                c.Anim.SetBool("IsIdle",true);
+                c.Anim.SetBool("IsIdel",true);
                 break;
             case CharState.Walk:
-                c.Anim.SetBool("IsWalk",true);
+                c.Anim.SetBool("IsMove",true);
                 break;
         }
     }
