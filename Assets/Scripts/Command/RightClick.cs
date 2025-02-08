@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Character
+public class RightClick : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -11,11 +11,6 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        switch(state)
-        {
-            case CharState.Walk:
-                WalkUpdate();
-                break;
-        }
+        
     }
 }
