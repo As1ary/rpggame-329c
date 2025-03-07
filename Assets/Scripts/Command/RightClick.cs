@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RightClick : MonoBehaviour
@@ -26,7 +27,9 @@ public class RightClick : MonoBehaviour
         {
             c.WalkToPosition(hit.point);
         }
+        CreateVFX(hit.point, VFXManager.instance.DoubleRingMarker);
     }
+
     private void TryCommand (Vector2 screenPos) 
     {
         Ray ray = cam.ScreenPointToRay(screenPos);
@@ -41,6 +44,13 @@ public class RightClick : MonoBehaviour
                     break;
             }
         }    
+    }
+     private void CreateVFX (Vector3 pos, GameObject vfxPrefab) 
+    {
+        if (vfxPrefab == null)
+            return;
+        Instantiate(vfxPrefab,
+            pos + new Vector3(0f, 0.1f, 0f), Quaternion.identity);    
     }
 
     // Update is called once per frame
