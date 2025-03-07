@@ -19,9 +19,9 @@ public abstract class Character : MonoBehaviour
 
    [SerializeField] protected CharState state;
    public CharState State { get { return state; } }
-   /*[SerializeField] 
+   [SerializeField] 
    protected GameObject ringSelection;
-   public GameObject RingSelection { get { return ringSelection;}}*/
+   public GameObject RingSelection { get { return ringSelection;}}
 
    void Awake()
    {
@@ -59,6 +59,6 @@ public abstract class Character : MonoBehaviour
    }
    public void ToggleRingSelection(bool flag)
    {
-     //ringSelection.SetActive(flag);
+     ringSelection.SetActive(flag);
    }
 }
