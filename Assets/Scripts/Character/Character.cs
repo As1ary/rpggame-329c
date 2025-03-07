@@ -1,4 +1,5 @@
-using UnityEditor.Experimental.GraphView;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,6 +35,9 @@ public abstract class Character : MonoBehaviour
    
    [SerializeField]
    protected float attackRange = 2f;
+
+   [SerializeField]
+   protected int attackDamage = 3;
 
    [SerializeField]
    protected float attackCoolDown = 2f;
@@ -110,6 +114,66 @@ public abstract class Character : MonoBehaviour
    {
       transform.LookAt(curCharTarget.transform);
       anim.SetTrigger("Attack");
+
+      AttackLogic();
       
+   }
+   protected void AttackUpdate()
+   {
+      if(curCharTarget == null)
+        return;
+      if(curCharTarget.CurHP <= 0)
+      {
+        SetState(CharState.Idle);
+        return;
+      }
+      navAgent.isStopped = true;
+      attackTimer += Time.deltaTime;
+      if(attackTimer >= attackCoolDown)
+      {
+        attackTimer = 0f;
+        Attack();
+      }
+      float distance = Vector3.Distance(transform.position,
+                            curCharTarget.transform.position);
+      if(distance > attackRange)
+      {
+        SetState(CharState.WalkToEnemy);
+        navAgent.SetDestination(curCharTarget.transform.position);
+        navAgent.isStopped = false;
+      }
+   }
+   protected virtual IEnumerator DestroyObject()
+   {
+      yield return new WaitForSeconds(5f);
+      Destroy(gameObject);
+   }
+   protected virtual void Die()
+   {
+      navAgent.isStopped = true;
+      SetState (CharState.Die);
+      anim.SetTrigger ("Die");
+      StartCoroutine(DestroyObject());
+   }
+   public void ReceiveDamage (Character enemy) 
+   {
+      if(curHP <= 0 || state == CharState.Die)
+        return;
+
+      curHP -= enemy.attackDamage;
+      if(curHP <= 0)
+      {
+        curHP = 0;
+        Die();
+      } 
+   }
+   protected void AttackLogic()
+   {
+      Character target = curCharTarget.GetComponent<Character>();
+      if(target != null)
+      {
+        target.ReceiveDamage(this);
+      }
+    
    }
 }
