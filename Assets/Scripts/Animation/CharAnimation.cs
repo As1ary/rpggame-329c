@@ -19,6 +19,7 @@ public class CharAnimation : MonoBehaviour
                 c.Anim.SetBool("IsIdel",true);
                 break;
             case CharState.Walk:
+            case CharState.WalkToEnemy:
                 c.Anim.SetBool("IsMove",true);
                 break;
         }

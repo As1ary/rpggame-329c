@@ -161,12 +161,13 @@ GameObject:
   - component: {fileID: 141353448}
   - component: {fileID: 141353447}
   - component: {fileID: 141353446}
+  - component: {fileID: 141353449}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &141353446
 MonoBehaviour:
@@ -180,6 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abafd70b3111fe43b70fa00360b89ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 200
 --- !u!114 &141353447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +215,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &141353449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141353445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04432ef0ffb4b654f97a3733fb0dcfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doubleRingMarker: {fileID: 6044037666520248651, guid: 4fe082e0df0bed247a8bf76b3138e192, type: 3}
 --- !u!1 &225069322
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +521,71 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1001 &738043021
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114438, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_Name
+      value: Goblin_Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 114438, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.79885
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.219254
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404400, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131368666489161835, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
 --- !u!1 &772580882
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +665,7 @@ GameObject:
   - component: {fileID: 786366237}
   m_Layer: 0
   m_Name: Camera Base
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,6 +875,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 131680, guid: 9fa98ba89a97195488cddd4f06eb6d81, type: 3}
+      propertyPath: m_TagString
+      value: Hero
+      objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 9fa98ba89a97195488cddd4f06eb6d81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 57.01
@@ -831,6 +917,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 9fa98ba89a97195488cddd4f06eb6d81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9547916, guid: 9fa98ba89a97195488cddd4f06eb6d81, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9547916, guid: 9fa98ba89a97195488cddd4f06eb6d81, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166167653863734001, guid: 9fa98ba89a97195488cddd4f06eb6d81, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -959,6 +1057,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9566420, guid: 282f0fc8957179541b52d9477337565f, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9566420, guid: 282f0fc8957179541b52d9477337565f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6433046668469140869, guid: 282f0fc8957179541b52d9477337565f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -975,9 +1085,9 @@ GameObject:
   - component: {fileID: 1906563644}
   - component: {fileID: 1906563646}
   - component: {fileID: 1906563645}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1069,3 +1179,4 @@ SceneRoots:
   - {fileID: 1312790504}
   - {fileID: 1839456459}
   - {fileID: 141353448}
+  - {fileID: 738043021}
