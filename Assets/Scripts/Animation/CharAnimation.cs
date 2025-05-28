@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class CharAnimation : MonoBehaviour
@@ -16,11 +17,14 @@ public class CharAnimation : MonoBehaviour
         switch (c.State)
         {
             case CharState.Idle:
-                c.Anim.SetBool("IsIdel",true);
+                c.Anim.SetBool("IsIdel", true);
                 break;
             case CharState.Walk:
             case CharState.WalkToEnemy:
-                c.Anim.SetBool("IsMove",true);
+                c.Anim.SetBool("IsMove", true);
+                break;
+            case CharState.WalkToMagicCast:
+                c.Anim.SetBool("IsWalk", true);
                 break;
         }
     }

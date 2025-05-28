@@ -11,7 +11,7 @@ public class Hero : Character
     // Update is called once per frame
     void Update()
     {
-         switch(state)
+        switch (state)
         {
             case CharState.Walk:
                 WalkUpdate();
@@ -21,6 +21,9 @@ public class Hero : Character
                 break;
             case CharState.Attack:
                 AttackUpdate();
+                break;
+            case CharState.WalkToMagicCast:
+                WalkToMagicCastUpdate();
                 break;
         }
     }
