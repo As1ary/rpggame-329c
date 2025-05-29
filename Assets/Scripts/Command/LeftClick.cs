@@ -25,10 +25,11 @@ public class LeftClick : MonoBehaviour
     private void SelectCharactor(RaycastHit hit)
     {
         Character hero = hit.collider.GetComponent<Character>();
-        Debug.Log("Selected Char: "+ hit.collider.gameObject);
+        Debug.Log("Selected Char: " + hit.collider.gameObject);
 
         PartyManager.instance.SelectChars.Add(hero);
         hero.ToggleRingSelection(true);
+        UIManager.instance.ShowMagicToggles();
     }
     private void TrySelect(Vector2 screenPos)
     {

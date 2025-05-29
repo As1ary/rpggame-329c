@@ -65,14 +65,16 @@ public abstract class Character : MonoBehaviour
   { get { return isMagicMode; } set { isMagicMode = value; } }
 
   protected VFXManager vfxManager;
+  protected UIManager uiManager;
   void Awake()
   {
     navAgent = GetComponent<NavMeshAgent>();
     anim = GetComponent<Animator>();
   }
-  public void charInit(VFXManager vfxM)
+  public void charInit(VFXManager vfxM, UIManager uiM)
   {
     vfxManager = vfxM;
+    uiManager = uiM;
   }
 
   public void SetState(CharState s)
@@ -237,6 +239,8 @@ public abstract class Character : MonoBehaviour
     isMagicMode = false;
 
     SetState(CharState.Idle);
+    if (uiManager != null)
+      uiManager.IsOnCurToggleMagic(false);
   }
   private IEnumerator LoadMagicCast(Magic curMagicCast)
   {
