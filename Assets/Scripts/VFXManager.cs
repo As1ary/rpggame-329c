@@ -5,10 +5,13 @@ public class VFXManager : MonoBehaviour
     [SerializeField]
     private GameObject doubleRingMarker;
     public GameObject DoubleRingMarker { get { return doubleRingMarker; } }
-    public static VFXManager instance;
     [SerializeField]
     private GameObject[] magicVFX;
     public GameObject[] MagicVFX { get { return magicVFX; } }
+    [SerializeField]
+    private MagicData[] magicDatas;
+    public MagicData[] MagicDatas { get { return magicDatas; }}
+    public static VFXManager instance;
 
     void Awake()
     {
