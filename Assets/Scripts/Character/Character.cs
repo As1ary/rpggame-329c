@@ -244,11 +244,13 @@ public abstract class Character : MonoBehaviour
   }
   private IEnumerator ShootMagicCast(Magic curMagicCast)
   {
+    Vector3 shootOrigin = transform.position + Vector3.up * 1.2f;
+    Vector3 shootTarget = curCharTarget.transform.position + Vector3.up * 1.2f;
     if (vfxManager != null)
       vfxManager.ShootMagic(curMagicCast.ShootId,
-                            transform.position,
-                            curCharTarget.transform.position,
-                            curMagicCast.ShootTime);
+                      shootOrigin,
+                      shootTarget,
+                      curMagicCast.ShootTime);
     yield return new WaitForSeconds(curMagicCast.ShootTime);
 
     //cast logic
@@ -261,9 +263,10 @@ public abstract class Character : MonoBehaviour
   }
   private IEnumerator LoadMagicCast(Magic curMagicCast)
   {
+    Vector3 loadOrigin = transform.position + Vector3.up * 1.2f;
     if (vfxManager != null)
       vfxManager.LoadMagic(curMagicCast.LoadId,
-                          transform.position,
+                          loadOrigin,
                           curMagicCast.LoadTime);
     yield return new WaitForSeconds(curMagicCast.LoadTime);
 
