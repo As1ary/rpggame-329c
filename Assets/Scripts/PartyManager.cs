@@ -33,7 +33,8 @@ public class PartyManager : MonoBehaviour
 
         InventoryManager.Instance.AddItem(members[1], 0);//Health Potion
         InventoryManager.Instance.AddItem(members[1], 1);//Sword
-        InventoryManager.Instance.AddItem(members[1], 2);//Shield
+        InventoryManager.Instance.AddItem(members[1], 2);//ShieldA
+        InventoryManager.Instance.AddItem(members[1], 3);//ShieldB
         
         UIManager.instance.ShowMagicToggles();
     }
