@@ -23,9 +23,17 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject inventoryPanel;
     [SerializeField]
+    private GameObject grayImage;
+    [SerializeField]
+    private GameObject itemDialog;
+    [SerializeField]
     private GameObject itemUIPrefab;
     [SerializeField]
     private GameObject[] slots;
+    [SerializeField]
+    private ItemDrag curItemDrag;
+    [SerializeField]
+    private int curSlotId;
 
     private void Awake()
     {
@@ -122,7 +130,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    
+
     public void ShowInventory()
     {
         if (PartyManager.instance.SelectChars.Count <= 0)
@@ -139,6 +147,8 @@ public class UIManager : MonoBehaviour
                 GameObject itemObj = Instantiate(itemUIPrefab, slots[i].transform);
                 ItemDrag itemDrag = itemObj.GetComponent<ItemDrag>();
 
+                itemDrag.UIManager = this;
+                
                 itemDrag.Item = hero.InventoryItems[i];
                 itemDrag.IconParent = slots[i].transform;
                 itemDrag.Image.sprite = hero.InventoryItems[i].Icon;
@@ -151,5 +161,25 @@ public class UIManager : MonoBehaviour
         {
             slots[i].GetComponent<InventorySlot>().ID = i;
         }
+    }
+    public void SetCurItemInUse(ItemDrag itemDrag, int index)
+    {
+        curItemDrag = itemDrag;
+        curSlotId = index;
+    }
+    public void ToggleItemDialog(bool flag)
+    {
+        grayImage.SetActive(flag);
+        itemDialog.SetActive(flag);
+    }
+    public void DeleteItemIcon()
+    {
+        Destroy(curItemDrag.gameObject); // destory Icon
+    }
+    public void ClickDrinkConsumable()//Map with Button "Use"
+    {
+        InventoryManager.Instance.DrinkConsumableItem(curItemDrag.Item, curSlotId);
+        DeleteItemIcon();
+        ToggleItemDialog(false);
     }
 }

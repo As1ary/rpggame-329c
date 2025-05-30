@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
         int id;
         switch (item.Type)
         {
-            case ItemType.Consumble:
+            case ItemType.Consumable:
                 id = 1;
                 break;
             default:
@@ -84,6 +84,17 @@ public class InventoryManager : MonoBehaviour
         {
             if (items[i] != null)
                 SpawnDropItem(items[i], pos);
+        }
+    }
+    public void DrinkConsumableItem(Item item, int slotId)
+    {
+        string s = string.Format("Drink: {0}", item.ItemName);
+        Debug.Log(s);
+
+        if (PartyManager.instance.SelectChars.Count > 0)
+        {
+            PartyManager.instance.SelectChars[0].Recover(item.Power);
+            RemoveItemInBag(slotId);
         }
     }
 }

@@ -32,6 +32,9 @@ public abstract class Character : MonoBehaviour
   [SerializeField]
   protected int curHP = 10;
   public int CurHP { get { return curHP; } }
+  [SerializeField]
+  protected int maxHP = 100;
+  public int MaxHP { get { return maxHP; } }
 
   [SerializeField]
   protected Character curCharTarget;
@@ -73,7 +76,7 @@ public abstract class Character : MonoBehaviour
   [SerializeField]
   protected Item mainWeapon;
   public Item MainWeapon
-  { get { return mainWeapon; }set { mainWeapon = value; } }
+  { get { return mainWeapon; } set { mainWeapon = value; } }
 
   [SerializeField]
   protected Item shield;
@@ -87,7 +90,7 @@ public abstract class Character : MonoBehaviour
     navAgent = GetComponent<NavMeshAgent>();
     anim = GetComponent<Animator>();
   }
-  
+
   public void charInit(VFXManager vfxM, UIManager uiM, InventoryManager invM)
   {
     vfxManager = vfxM;
@@ -206,7 +209,7 @@ public abstract class Character : MonoBehaviour
     anim.SetTrigger("Die");
 
     invManager.SpawnDropInventory(inventoryItems, transform.position);
-    
+
     StartCoroutine(DestroyObject());
   }
   public void ReceiveDamage(int damage)
@@ -306,5 +309,12 @@ public abstract class Character : MonoBehaviour
 
       MagicCast(curMagicCast);
     }
+  }
+  public void Recover(int n)
+  {
+    curHP += n;
+
+    if (curHP > maxHP)
+      curHP = maxHP;
   }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Consumble,
+    Consumable,
     Equipment,
     Weapon,
     Ammo,
