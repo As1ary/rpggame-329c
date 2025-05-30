@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 141353449}
   - component: {fileID: 141353450}
   - component: {fileID: 141353451}
+  - component: {fileID: 141353452}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -818,11 +819,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcfb09b151fb60489c5be6c9bdd47f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefabs: []
+  itemPrefabs:
+  - {fileID: 2183001951008068311, guid: 99a8185add374f54fa1ddfc770776abc, type: 3}
+  - {fileID: 157152, guid: b5f003f21952b5c488aa9c614cbacffb, type: 3}
   itemData:
   - {fileID: 11400000, guid: b78c190eff915c74884e24594246b875, type: 2}
   - {fileID: 11400000, guid: 1341734669111ac4bab6586ca9f426ad, type: 2}
   - {fileID: 11400000, guid: 3554af24127be9f4db42c1449194d4c1, type: 2}
+--- !u!114 &141353452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141353445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a77cec00145e4441a8c7303cf19e43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsters:
+  - {fileID: 904625511}
 --- !u!1 &166442319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4958,6 +4975,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893075396}
   m_CullTransparentMesh: 1
+--- !u!114 &904625511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2563076535041352722, guid: 7b23ce317223aa64cbac3651dcfa2102, type: 3}
+  m_PrefabInstance: {fileID: 738043021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417300942b0f2cd47ac3613a7434aa9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &906842112
 GameObject:
   m_ObjectHideFlags: 0

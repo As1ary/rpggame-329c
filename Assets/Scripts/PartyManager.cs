@@ -22,7 +22,7 @@ public class PartyManager : MonoBehaviour
     {
         foreach (Character c in members)
         {
-            c.charInit(VFXManager.instance, UIManager.instance);
+            c.charInit(VFXManager.instance, UIManager.instance, InventoryManager.Instance);
         }
         SelectSingleHero(0);
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
