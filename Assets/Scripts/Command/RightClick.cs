@@ -11,60 +11,73 @@ public class RightClick : MonoBehaviour
     {
         instance = this;
         cam = Camera.main;
-        layerMask = LayerMask.GetMask("Ground","Character","Building");    
+        layerMask = LayerMask.GetMask("Ground", "Character", "Building");
     }
-    
-    private void CommandToWalk (RaycastHit hit, List<Character> heroes) 
+
+    private void CommandToWalk(RaycastHit hit, List<Character> heroes)
     {
         foreach (Character h in heroes)
         {
-            if (h != null )
+            if (h != null)
                 h.WalkToPosition(hit.point);
         }
         CreateVFX(hit.point, VFXManager.instance.DoubleRingMarker);
     }
 
-    private void TryCommand (Vector2 screenPos) 
+    private void TryCommand(Vector2 screenPos)
     {
         Ray ray = cam.ScreenPointToRay(screenPos);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, 1000, layerMask))
+        if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
-            switch(hit.collider.tag)
+            switch (hit.collider.tag)
             {
-                case"Ground":
+                case "Ground":
                     CommandToWalk(hit, PartyManager.instance.SelectChars);
                     break;
-                case"Enemy":
+                case "Enemy":
                     CommandToAttack(hit, PartyManager.instance.SelectChars);
                     break;
+                case "NPC":
+                    CommandTalkToNPC(hit, PartyManager.instance.SelectChars);
+                    break;
             }
-        }    
+        }
     }
-     private void CreateVFX (Vector3 pos, GameObject vfxPrefab) 
+    private void CreateVFX(Vector3 pos, GameObject vfxPrefab)
     {
         if (vfxPrefab == null)
             return;
         Instantiate(vfxPrefab,
-            pos + new Vector3(0f, 0.1f, 0f), Quaternion.identity);    
+            pos + new Vector3(0f, 0.1f, 0f), Quaternion.identity);
     }
-    private void CommandToAttack (RaycastHit hit, List<Character> heroes) 
+    private void CommandToAttack(RaycastHit hit, List<Character> heroes)
     {
         Character target = hit.collider.GetComponent<Character>();
-        Debug.Log("Attack: "+target);
+        Debug.Log("Attack: " + target);
         foreach (Character h in heroes)
         {
             h.ToAttackCharacter(target);
-        }   
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
         {
             TryCommand(Input.mousePosition);
         }
+    }
+    private void CommandTalkToNPC(RaycastHit hit, List<Character> heroes)
+    {
+        Character npc = hit.collider.GetComponent<Character>();
+        Debug.Log("Talk to npc" + npc);
+
+        if (heroes.Count <= 0)
+            return;
+        
+        heroes[0].ToTalkToNpc(npc);
     }
 }

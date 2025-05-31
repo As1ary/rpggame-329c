@@ -6,14 +6,15 @@ using UnityEngine.AI;
 
 public enum CharState
 {
-    Idle,
-    Walk,
-    WalkToEnemy,
-    Attack,
-    WalkToMagicCast,
-    MagicCast,
-    Hit,
-    Die,
+  Idle,
+  Walk,
+  WalkToEnemy,
+  Attack,
+  WalkToMagicCast,
+  MagicCast,
+  Hit,
+  Die,
+  WalkToNpc
 }
 
 public abstract class Character : MonoBehaviour
@@ -22,6 +23,14 @@ public abstract class Character : MonoBehaviour
 
   protected Animator anim;
   public Animator Anim { get { return anim; } }
+
+  [SerializeField]
+  protected Sprite avatarPic;
+  public Sprite AvatarPic { get { return avatarPic; } }
+
+  [SerializeField]
+  protected string charName;
+  public string CharName { get { return charName; } }
 
   [SerializeField] protected CharState state;
   public CharState State { get { return state; } }
@@ -345,5 +354,19 @@ public abstract class Character : MonoBehaviour
       shield = null;
       Destroy(shieldObj);
     }
+  }
+  public void ToTalkToNpc(Character npc)
+  {
+    if (curHP <= 0 || state == CharState.Die)
+      return;
+
+    //look target
+    curCharTarget = npc;
+
+    //start walking to enemy
+    navAgent.SetDestination(npc.transform.position);
+    navAgent.isStopped = false;
+
+    SetState(CharState.WalkToNpc);
   }
 }
