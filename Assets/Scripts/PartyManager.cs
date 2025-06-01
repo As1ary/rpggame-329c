@@ -13,7 +13,7 @@ public class PartyManager : MonoBehaviour
 
     [SerializeField]
     private List<Quest> questList = new List<Quest>();
-    public List<Quest> QuestList { get {return questList; } }
+    public List<Quest> QuestList { get { return questList; } }
 
     public static PartyManager instance;
 
@@ -39,7 +39,7 @@ public class PartyManager : MonoBehaviour
         InventoryManager.Instance.AddItem(members[1], 1);//Sword
         InventoryManager.Instance.AddItem(members[1], 2);//ShieldA
         InventoryManager.Instance.AddItem(members[1], 3);//ShieldB
-        
+
         UIManager.instance.ShowMagicToggles();
     }
 
@@ -72,5 +72,51 @@ public class PartyManager : MonoBehaviour
 
         selectChars[0].IsMagicMode = true;
         selectChars[0].CurMagicCast = selectChars[0].MagicSkills[i];
+    }
+    public int FindIndexFromClass(Character hero)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i] == hero)
+                return i;
+        }
+        return 0;
+    }
+    public void SelectSingleHeroByToggle(int i)
+    {
+        if (selectChars.Contains(members[i]))
+        {
+            members[i].ToggleRingSelection(true);
+            UIManager.instance.ShowMagicToggles();
+        }
+        else
+        {
+            selectChars.Add(members[i]);
+            members[i].ToggleRingSelection(true);
+            UIManager.instance.ShowMagicToggles();
+        }
+    }
+    public void UnSelectSingleHeroByToggle(int i)
+    {
+        if (selectChars.Count <= i)
+        {
+            UIManager.instance.ToggleAvatar[i].isOn = true;
+            return;
+        }
+        if (selectChars.Contains(members[i]))
+        {
+            selectChars.Remove(members[i]);
+            members[i].ToggleRingSelection(false);
+        }
+    }
+    public void RemoveHeroFromParty(int id)
+    {
+        if (id == -1 || id == 0)
+            return;
+
+        if (selectChars.Contains(members[id]))
+            selectChars.Remove(members[id]);
+
+        members.Remove(members[id]);
     }
 }

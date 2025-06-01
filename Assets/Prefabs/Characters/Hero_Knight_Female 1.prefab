@@ -1312,6 +1312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fb703c640d38144b9bf1235445bd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatarPic: {fileID: 21300000, guid: 871744f24c22b3446ab5f3035aeb8c17, type: 3}
+  charName: Sarah
   state: 0
   ringSelection: {fileID: 5166167653863734001}
   curHP: 10
@@ -1352,6 +1354,14 @@ MonoBehaviour:
   shieldHand: {fileID: 479758}
   shieldObj: {fileID: 0}
   defensePower: 0
+  exp: 0
+  level: 0
+  strength: 0
+  dexterity: 0
+  constitution: 0
+  intelligence: 0
+  wisdom: 0
+  charisma: 0
 --- !u!114 &9010397378870986454
 MonoBehaviour:
   m_ObjectHideFlags: 0

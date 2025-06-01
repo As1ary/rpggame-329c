@@ -55,6 +55,7 @@ public abstract class Character : MonoBehaviour
 
   [SerializeField]
   protected int attackDamage = 3;
+  public int AttackDamage { get { return attackDamage; }}
 
   [SerializeField]
   protected float attackCoolDown = 2f;
@@ -97,6 +98,7 @@ public abstract class Character : MonoBehaviour
   protected GameObject shieldObj;
   [SerializeField]
   protected int defensePower = 0;
+  public int DefensePower{ get { return defensePower; } }
   protected VFXManager vfxManager;
   protected UIManager uiManager;
   protected InventoryManager invManager;
