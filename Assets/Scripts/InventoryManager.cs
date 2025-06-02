@@ -23,7 +23,9 @@ public class InventoryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        AddItenmShopToNpc(1, 0);
+        AddItenmShopToNpc(1, 3);
+        AddItenmShopToNpc(1, 4);
     }
 
     // Update is called once per frame
@@ -150,5 +152,10 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return false;
+    }
+    private void AddItenmShopToNpc(int npcId, int itemId)
+    {
+        Item item = new Item(itemData[itemId]);
+        QuestManager.instance.NPCPerson[npcId].ShopItems.Add(item);
     }
 }

@@ -14,6 +14,9 @@ public class PartyManager : MonoBehaviour
     [SerializeField]
     private List<Quest> questList = new List<Quest>();
     public List<Quest> QuestList { get { return questList; } }
+    [SerializeField]
+    private int partyMoney = 1000;
+    public int PartyMoney { get { return partyMoney; } set { partyMoney = value;}}
 
     public static PartyManager instance;
 
@@ -98,11 +101,11 @@ public class PartyManager : MonoBehaviour
     }
     public void UnSelectSingleHeroByToggle(int i)
     {
-        if (selectChars.Count <= i)
+        /*if (selectChars.Count <= i)
         {
             UIManager.instance.ToggleAvatar[i].isOn = true;
             return;
-        }
+        }*/
         if (selectChars.Contains(members[i]))
         {
             selectChars.Remove(members[i]);
