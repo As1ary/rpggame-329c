@@ -27,6 +27,10 @@ public class QuestManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach (Character npc in npcPerson)
+        {
+            npc.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance,PartyManager.instance);
+        }
         AddQuestToNPC(npcPerson[0], questData[0]);
     }
 
@@ -51,7 +55,7 @@ public class QuestManager : MonoBehaviour
     }
     public bool CheckItemToDelivery()
     {
-        return InventoryManager.Instance.CheckPartyForItem(curQuest.QuestItemId);
+        return InventoryManager.instance.CheckPartyForItem(curQuest.QuestItemId);
     }
     public bool CheckIfFinishQuest()
     {
@@ -92,7 +96,7 @@ public class QuestManager : MonoBehaviour
     }
     public bool DeliverItem()
     {
-        return InventoryManager.Instance.RemoveItemFromParty(curQuest.QuestItemId);
+        return InventoryManager.instance.RemoveItemFromParty(curQuest.QuestItemId);
     }
     public bool NpcGiveReward()
     {
@@ -101,7 +105,7 @@ public class QuestManager : MonoBehaviour
 
         Character hero = PartyManager.instance.SelectChars[0];
 
-        Item item = new Item(InventoryManager.Instance.ItemData[curQuest.RewardItemId]);
+        Item item = new Item(InventoryManager.instance.ItemData[curQuest.RewardItemId]);
 
         for (int i = 0; i < 16; i++)
         {

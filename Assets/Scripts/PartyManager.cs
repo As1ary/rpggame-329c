@@ -16,7 +16,9 @@ public class PartyManager : MonoBehaviour
     public List<Quest> QuestList { get { return questList; } }
     [SerializeField]
     private int partyMoney = 1000;
-    public int PartyMoney { get { return partyMoney; } set { partyMoney = value;}}
+    public int PartyMoney { get { return partyMoney; } set { partyMoney = value; } }
+    [SerializeField]
+    private int totalExp;
 
     public static PartyManager instance;
 
@@ -29,19 +31,19 @@ public class PartyManager : MonoBehaviour
     {
         foreach (Character c in members)
         {
-            c.charInit(VFXManager.instance, UIManager.instance, InventoryManager.Instance);
+            c.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, this);
         }
         SelectSingleHero(0);
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
 
-        InventoryManager.Instance.AddItem(members[0], 0);//Health Potion
-        InventoryManager.Instance.AddItem(members[0], 1);// Sword
+        InventoryManager.instance.AddItem(members[0], 0);//Health Potion
+        InventoryManager.instance.AddItem(members[0], 1);// Sword
 
-        InventoryManager.Instance.AddItem(members[1], 0);//Health Potion
-        InventoryManager.Instance.AddItem(members[1], 1);//Sword
-        InventoryManager.Instance.AddItem(members[1], 2);//ShieldA
-        InventoryManager.Instance.AddItem(members[1], 3);//ShieldB
+        InventoryManager.instance.AddItem(members[1], 0);//Health Potion
+        InventoryManager.instance.AddItem(members[1], 1);//Sword
+        InventoryManager.instance.AddItem(members[1], 2);//ShieldA
+        InventoryManager.instance.AddItem(members[1], 3);//ShieldB
 
         UIManager.instance.ShowMagicToggles();
     }
@@ -121,5 +123,13 @@ public class PartyManager : MonoBehaviour
             selectChars.Remove(members[id]);
 
         members.Remove(members[id]);
+    }
+    public void DistributeTotalExp(int n)
+    {
+        totalExp = n;
+        int eachHeroExp = totalExp / members.Count;
+
+        foreach (Hero hero in members)
+            hero.ReceiveExp(eachHeroExp);
     }
 }

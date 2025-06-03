@@ -14,11 +14,11 @@ public class InventoryManager : MonoBehaviour
     { get { return itemData; } set { itemData = value; } }
 
     public const int MAXSLOT = 17;
-    public static InventoryManager Instance;
+    public static InventoryManager instance;
 
     void Awake()
     {
-        Instance = this;
+        instance = this;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -92,7 +92,7 @@ public class InventoryManager : MonoBehaviour
         itemObj.AddComponent<ItemPick>();
 
         ItemPick itemPick = itemObj.GetComponent<ItemPick>();
-        itemPick.Init(item, Instance, PartyManager.instance);
+        itemPick.Init(item, instance, PartyManager.instance);
     }
     public void SpawnDropInventory(Item[] items, Vector3 pos)
     {

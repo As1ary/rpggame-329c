@@ -268,7 +268,7 @@ public class UIManager : MonoBehaviour
     }
     public void ClickDrinkConsumable()//Map with Button "Use"
     {
-        InventoryManager.Instance.DrinkConsumableItem(curItemDrag.Item, curSlotId);
+        InventoryManager.instance.DrinkConsumableItem(curItemDrag.Item, curSlotId);
         DeleteItemIcon();
         ToggleItemDialog(false);
     }

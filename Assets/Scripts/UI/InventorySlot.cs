@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryManager = InventoryManager.Instance;
+        inventoryManager = InventoryManager.instance;
     }
 
     // Update is called once per frame
