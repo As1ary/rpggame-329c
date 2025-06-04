@@ -19,6 +19,9 @@ public class PartyManager : MonoBehaviour
     public int PartyMoney { get { return partyMoney; } set { partyMoney = value; } }
     [SerializeField]
     private int totalExp;
+    [SerializeField]
+    private HeroData[] heroData;
+    public HeroData[] HeroData { get { return heroData; } }
 
     public static PartyManager instance;
 
@@ -29,10 +32,10 @@ public class PartyManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (Character c in members)
+        /*foreach (Character c in members)
         {
             c.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, this);
-        }
+        }*/
         SelectSingleHero(0);
         /*members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
@@ -103,11 +106,11 @@ public class PartyManager : MonoBehaviour
     }
     public void UnSelectSingleHeroByToggle(int i)
     {
-        if (selectChars.Count <= i)
+        /*if (selectChars.Count <= i)
         {
             UIManager.instance.ToggleAvatar[i].isOn = true;
             return;
-        }
+        }*/
         if (selectChars.Contains(members[i]))
         {
             selectChars.Remove(members[i]);
@@ -142,5 +145,69 @@ public class PartyManager : MonoBehaviour
 
         members.Add(hero);
         return true;
+    }
+    public void SaveAllHeroData()
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            Hero hero = (Hero)members[i];
+            heroData[i].prefabId = hero.PrefabID;
+            heroData[i].curHp = hero.CurHP;
+
+            for (int j = 0; j < hero.MagicSkills.Count; j++)
+                heroData[i].magicIds[j] = hero.MagicSkills[j].ID;
+
+            for (int k = 0; k < hero.InventoryItems.Length; k++)
+            {
+                if (hero.InventoryItems[k] == null)
+                    heroData[i].inventoryItemIds[k] = -1;
+                else
+                    heroData[i].inventoryItemIds[k] = hero.InventoryItems[k].ID;
+            }
+
+            heroData[i].attackDamage = hero.AttackDamage;
+            heroData[i].defensePower = hero.DefensePower;
+            heroData[i].level = hero.Level;
+            heroData[i].nextExp = hero.NextExp;
+        }
+    }
+    public void LoadAllHeroData()
+    {
+        int enterId = Settings.enterPointId;
+        Vector3 pos = MapManager.instance.EnterPoints[enterId].position;
+
+        for (int i = 0; i < Settings.partyCount; i++)
+        {
+            GameObject heroObj =
+                Instantiate(GameManager.instance.HeroPrefabs[heroData[i].prefabId],
+                pos, Quaternion.identity);
+
+            if (i == 0)
+                heroObj.gameObject.tag = "Player";
+
+            Hero hero = heroObj.GetComponent<Hero>();
+            hero.CharInit(VFXManager.instance, UIManager.instance,
+                InventoryManager.instance, this);
+            hero.CurHP = heroData[i].curHp;
+
+            for (int j = 0; j < heroData[i].magicIds.Count; j++)
+            {
+                int magicId = heroData[i].magicIds[j];
+                hero.MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[magicId]));
+            }
+
+            for (int k = 0; k < heroData[i].inventoryItemIds.Length; k++)
+            {
+                int itemId = heroData[i].inventoryItemIds[k];
+                if (itemId != -1)
+                    hero.InventoryItems[k] = new Item(InventoryManager.instance.ItemData[itemId]);
+            }
+            hero.AttackDamage = heroData[i].attackDamage;
+            hero.DefensePower = heroData[i].defensePower;
+            hero.Exp = heroData[i].exp;
+            hero.Level = heroData[i].level;
+            hero.NextExp = heroData[i].nextExp;
+            members.Add(hero);
+        }
     }
 }
