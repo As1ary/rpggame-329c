@@ -79,10 +79,18 @@ public class Hero : Character
 
             Npc npc = curCharTarget.GetComponent<Npc>();
 
-            if (npc.IsShopKeeper)
-                uiManager.PrepareShopPanel(npc, this);
+            if (npc != null)
+            {
+                if (npc.IsShopKeeper)
+                    uiManager.PrepareShopPanel(npc, this);
+                else
+                    uiManager.PrepareDialogueBox(npc);
+            }
             else
-                uiManager.PrepareDialogueBox(npc);
+            {
+                Hero hero = curCharTarget.GetComponent<Hero>();
+                uiManager.PrepareHeroJoinParty(hero);
+            }
 
         }
     }
@@ -124,6 +132,18 @@ public class Hero : Character
             level++;
             nextExp = level * 30;
             UpdateStat();
+
+            switch (level)
+            {
+                case 5:
+                    magicSkills.Add(new Magic(vfxManager.MagicDatas[0]));
+                    uiManager.ShowMagicToggles();
+                    break;
+                case 10:
+                    magicSkills.Add(new Magic(vfxManager.MagicDatas[1]));
+                    uiManager.ShowMagicToggles();
+                    break; 
+            }
         }
     }
 }

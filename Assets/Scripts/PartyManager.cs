@@ -34,7 +34,7 @@ public class PartyManager : MonoBehaviour
             c.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, this);
         }
         SelectSingleHero(0);
-        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
+        /*members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
 
         InventoryManager.instance.AddItem(members[0], 0);//Health Potion
@@ -43,7 +43,7 @@ public class PartyManager : MonoBehaviour
         InventoryManager.instance.AddItem(members[1], 0);//Health Potion
         InventoryManager.instance.AddItem(members[1], 1);//Sword
         InventoryManager.instance.AddItem(members[1], 2);//ShieldA
-        InventoryManager.instance.AddItem(members[1], 3);//ShieldB
+        InventoryManager.instance.AddItem(members[1], 3);//ShieldB*/
 
         UIManager.instance.ShowMagicToggles();
     }
@@ -103,11 +103,11 @@ public class PartyManager : MonoBehaviour
     }
     public void UnSelectSingleHeroByToggle(int i)
     {
-        /*if (selectChars.Count <= i)
+        if (selectChars.Count <= i)
         {
             UIManager.instance.ToggleAvatar[i].isOn = true;
             return;
-        }*/
+        }
         if (selectChars.Contains(members[i]))
         {
             selectChars.Remove(members[i]);
@@ -131,5 +131,16 @@ public class PartyManager : MonoBehaviour
 
         foreach (Hero hero in members)
             hero.ReceiveExp(eachHeroExp);
+    }
+    public bool HeroJoinParty(Character hero)
+    {
+        if (members.Count >= 6)
+            return false;
+
+        hero.CharInit(VFXManager.instance, UIManager.instance,
+                    InventoryManager.instance, this);
+
+        members.Add(hero);
+        return true;
     }
 }
