@@ -31,6 +31,15 @@ public class MapManager : MonoBehaviour
         Settings.partyCount = PartyManager.instance.Members.Count;
 
         PartyManager.instance.SaveAllHeroData();
+        switch (mapName)
+        {
+            case "VillageScene":
+                AudioManager.instance.PlayBGM(1);
+                break;
+            case "":
+                AudioManager.instance.PlayBGM(3);
+                break;
+        }
 
         SceneManager.LoadScene("");
     }
