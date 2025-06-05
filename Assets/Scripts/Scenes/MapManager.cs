@@ -41,6 +41,6 @@ public class MapManager : MonoBehaviour
                 break;
         }
 
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene(mapName);
     }
 }

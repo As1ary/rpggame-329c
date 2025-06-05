@@ -140,8 +140,6 @@ public class UIManager : MonoBehaviour
     {
         InitSlots();
         MapToggleAvatar();
-        charPanel.SetActive(false);
-        blackImage.SetActive(false);
     }
 
     // Update is called once per frame
